@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // <-- Import useNavigate
 import { CartContext } from "../context/CartContext";
 
 // Robotics Product data
@@ -44,6 +45,8 @@ const Home = () => {
   const { addToCart, addItem } = useContext(CartContext);
   const add = addToCart || addItem;
 
+  const navigate = useNavigate(); // <-- initialize navigate
+
   const parsePrice = (price) => Number(price.replace(/[^0-9.-]+/g, ""));
 
   // Slider state
@@ -78,7 +81,10 @@ const Home = () => {
           <p className="text-lg md:text-2xl mb-8 text-gray-700 font-roboto">
             Cutting-edge robotics kits and educational tools for young innovators.
           </p>
-          <button className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white px-8 py-3 rounded-full font-medium hover:scale-105 hover:shadow-lg transition-transform">
+          <button
+            onClick={() => navigate("/products")} // <-- navigate to /products
+            className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white px-8 py-3 rounded-full font-medium hover:scale-105 hover:shadow-lg transition-transform"
+          >
             Shop Now
           </button>
         </div>
